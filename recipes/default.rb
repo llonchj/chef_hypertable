@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: hsqldb
+# Cookbook Name:: hypertable
 # Recipe:: default
 #
 # Copyright 2013, YOUR_COMPANY_NAME
@@ -7,4 +7,4 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "hsqldb::server"
+include_recipe "hypertable::server"
