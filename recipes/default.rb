@@ -2,7 +2,7 @@
 # Cookbook Name:: hypertable
 # Recipe:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2013, Jordi Llonch
 #
 # All rights reserved - Do Not Redistribute
 #

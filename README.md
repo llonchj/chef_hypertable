@@ -1,9 +1,8 @@
 Hypertable Cookbook
 ====================
-TODO: Enter the cookbook description here.
 
-e.g.
-This cookbook makes your favorite breakfast sandwhich.
+Cookbook for the Hypertable Storage.
+
 
 Requirements
 ------------
@@ -15,4 +14,5 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Jordi Llonch <llonchj@gmail.com>
+

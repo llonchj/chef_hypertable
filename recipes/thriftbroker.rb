@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: hypertable
-# Recipe:: server
+# Recipe:: thriftbroker
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2013, Jordi Llonch
 #
 # All rights reserved - Do Not Redistribute
 #
