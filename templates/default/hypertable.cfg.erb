@@ -25,11 +25,11 @@ DfsBroker.Port=38030
 
 # Hyperspace
 
-<% if @hypertable_hyperspaces.empty? %>
+<% if @hyperspace_servers.empty? %>
 Hyperspace.Replica.Host=<% node[:fqdn] %>
 <% else %>
-<% @hypertable_hyperspaces.each do |hyperspace| %>
-Hyperspace.Replica.Host=<%= hyperspace[:fqdn] %>
+<% @hyperspace_servers.each do |node| %>
+Hyperspace.Replica.Host=<%= node[:fqdn] %>
 <% end %>
 <% end %>
 

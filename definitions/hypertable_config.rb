@@ -21,9 +21,10 @@
 define :hypertable_config do
 
   if Chef::Config[:solo]
-    hypertable_hyperspaces = []
+    hyperspace_servers = []
   else
-    hypertable_hyperspaces = search(:node, "role:#{node[:hypertable][:role][:hypertable_hyperspace]}")
+    hyperspace_servers = search(:node, "role:#{node[:hypertable][:role][:hypertable_hyperspace]}")
+    hyperspace_servers = hyperspace_servers.sort_by { |node| node[:fqdn] }
   end
 
   # install hypertable.cfg
@@ -32,7 +33,7 @@ define :hypertable_config do
     group params[:group]
     mode params[:mode]
     variables ({
-      :hypertable_hyperspaces => hypertable_hyperspaces
+      :hyperspace_servers => hyperspace_servers
     })
   end
 
