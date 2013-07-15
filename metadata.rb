@@ -9,3 +9,7 @@ version          '0.1.1'
 %w(ubuntu).each do |sup|
   supports sup
 end
+
+%w(iptables ulimit).each do |name|
+  depends name
+end
