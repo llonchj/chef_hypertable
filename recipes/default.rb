@@ -70,6 +70,16 @@ template "#{node[:hypertable][:path]}/conf/hypertable.cfg" do
   })
 end
 
+# install backup and restore tools
+%w(backup.sh restore.sh).each do |f|
+  cookbook_file "#{node[:hypertable][:path]}/bin/#{f}" do
+    source f
+    owner "root"
+    group "root"
+    mode "0755"
+  end
+end
+
 user_ulimit node[:hypertable][:user] do
   filehandle_limit 65536 # optional
 end
