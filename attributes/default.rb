@@ -10,11 +10,23 @@ default[:hypertable][:user] = "root"
 default[:hypertable][:package_dir] = "/var/chef/downloads"
 default[:hypertable][:package_cache] = "#{node[:hypertable][:package_dir]}/#{node[:hypertable][:package_file]}"
 
+default[:hypertable][:path_admin] = "/root/hypertable"
 default[:hypertable][:path_base] = "/opt/hypertable"
 default[:hypertable][:path] = "#{node[:hypertable][:path_base]}/current"
 
 default[:hypertable][:dfs] = "local"
 default[:hypertable][:distro] = ""
+
+#
+# Applicable roles for the nodes
+#
+default[:hypertable][:role][:hypertable_master] = "hypertable_master"
+default[:hypertable][:role][:hypertable_slave] = "hypertable_slave"
+default[:hypertable][:role][:hypertable_hyperspace] = "hypertable_hyperspace"
+default[:hypertable][:role][:hypertable_thriftbroker_additional] = "hypertable_thriftbroker_additional"
+
+# node attribute used in capistrano-chef (hostname, fqdn, ipaddress), default :fqdn
+default[:hypertable][:node_attribute] = :fqdn
 
 #default[:hypertable][:dfs] = "hadoop"
 #default[:hypertable][:distro] = "cdh4"
