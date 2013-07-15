@@ -71,8 +71,24 @@ end
 end
 
 user_ulimit node[:hypertable][:user] do
-  filehandle_limit 65536 # optional
+  filehandle_limit node[:hypertable][:filehandle_limit] # optional
 end
 
 iptables_rule "port_hypertable"
+
+if node.role?(node[:hypertable][:role][:hypertable_hyperspace]) 
+  include_recipe "hypertable::hyperspace"
+end
+
+if node.role?(node[:hypertable][:role][:hypertable_master]) 
+  include_recipe "hypertable::master"
+end
+
+if node.role?(node[:hypertable][:role][:hypertable_slave]) 
+  include_recipe "hypertable::slave"
+end
+
+if node.role?(node[:hypertable][:role][:hypertable_thriftbroker_additional]) 
+  include_recipe "hypertable::thriftbroker_additional"
+end
 
