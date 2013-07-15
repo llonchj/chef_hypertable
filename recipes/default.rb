@@ -54,14 +54,14 @@ else
 end
 
 # install notification hook
-template "/opt/hypertable/current/conf/notification-hook.sh" do
+template "#{node[:hypertable][:path]}/conf/notification-hook.sh" do
   owner "root"
   group "root"
   mode "0755"
 end
 
 # install hypertable.cfg
-template "/opt/hypertable/current/conf/hypertable.cfg" do
+template "#{node[:hypertable][:path]}/conf/hypertable.cfg" do
   owner "root"
   group "root"
   mode "0644"
