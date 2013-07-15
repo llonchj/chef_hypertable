@@ -24,7 +24,7 @@ Installation
 Recipes
 -------
 
-`hypertable` Provisions hypertable and executes the recipes defined by role in the node. (i.e a node with 'hypertable\_master' will include 'hypertable::master')
+`hypertable` Provisions hypertable and executes the recipes defined by role in the node. (i.e a node with 'hypertable\_master' includes 'hypertable::master')
 
 `hypertable::admin` Installs Capistrano
 
