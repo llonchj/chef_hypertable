@@ -1,3 +1,12 @@
+#
+# Cookbook Name:: hypertable
+# Recipe:: monitoring
+#
+# Copyright 2013, Jordi Llonch
+#
+# All rights reserved - Do Not Redistribute
+#
+
 
 %w(rrdtool graphviz).each do |name|
   package name

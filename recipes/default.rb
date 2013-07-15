@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package "db4.8-util" # provides db_hotbackup
-
 directory node[:hypertable][:package_dir] do
   owner 'root'
   group 'root'
@@ -29,8 +27,8 @@ dpkg_package "hypertable" do
 end
 
 # link version to current
-link "/opt/hypertable/current" do
-  to "/opt/hypertable/#{node[:hypertable][:version]}"
+link node[:hypertable][:path] do
+  to "#{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}"
 end
 
 execute "fhsize hypertable" do
@@ -45,6 +43,14 @@ else
   hypertable_hyperspaces = search(:node, "role:hypertable_hyperspace")
 end
 
+# install notification hook
+template "/opt/hypertable/current/conf/notification-hook.sh" do
+  owner "root"
+  group "root"
+  mode "0755"
+end
+
+# install hypertable.cfg
 template "/opt/hypertable/current/conf/hypertable.cfg" do
   owner "root"
   group "root"
