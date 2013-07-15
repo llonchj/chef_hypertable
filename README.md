@@ -12,7 +12,6 @@ Installation
 
 1. Create roles:
 
- * hypertable\_admin
  * hypertable\_hyperspace
  * hypertable\_master
  * hypertable\_slave
