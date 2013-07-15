@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# file:  /opt/hypertable/current/conf/notification-hook.sh 
+
+recipients="root"
+subject=$1
+message=$2
+echo -e $message | mail -s "$subject" ${recipients}
+
