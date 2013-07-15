@@ -36,15 +36,15 @@ dpkg_package "hypertable" do
   not_if "dpkg -s hypertable"
 end
 
+execute "fhsize hypertable" do
+  command "/bin/bash #{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}/bin/fhsize.sh"
+  cwd node[:hypertable][:path]
+  not_if { ::Dir.exists?("#{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}/run") }
+end
+
 # link version to current
 link node[:hypertable][:path] do
   to "#{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}"
-end
-
-execute "fhsize hypertable" do
-  command "/bin/bash #{node[:hypertable][:path]}/bin/fhsize.sh"
-  cwd node[:hypertable][:path]
-  not_if { ::Dir.exists?("#{node[:hypertable][:path]}/run") }
 end
 
 if Chef::Config[:solo]
