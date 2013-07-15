@@ -10,8 +10,8 @@ default[:hypertable][:user] = "root"
 default[:hypertable][:package_dir] = "/var/chef/downloads"
 default[:hypertable][:package_cache] = "#{node[:hypertable][:package_dir]}/#{node[:hypertable][:package_file]}"
 
-default[:hypertable][:path_admin] = "/root/hypertable"
 default[:hypertable][:path_base] = "/opt/hypertable"
+default[:hypertable][:path_admin] = node[:hypertable][:path_base]
 default[:hypertable][:path] = "#{node[:hypertable][:path_base]}/current"
 
 default[:hypertable][:dfs] = "local"
