@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of hypertable.
 
+## 0.1.2:
+
+* Added backup/restore scripts
+* hypertable\_config LWRP
+
 ## 0.1.1:
 
 * Capistrano integration
