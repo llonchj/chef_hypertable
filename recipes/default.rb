@@ -47,12 +47,6 @@ link node[:hypertable][:path] do
   to "#{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}"
 end
 
-if Chef::Config[:solo]
-  hypertable_hyperspaces = []
-else
-  hypertable_hyperspaces = search(:node, "role:hypertable_hyperspace")
-end
-
 # install notification hook
 template "#{node[:hypertable][:path]}/conf/notification-hook.sh" do
   owner "root"
@@ -60,14 +54,10 @@ template "#{node[:hypertable][:path]}/conf/notification-hook.sh" do
   mode "0755"
 end
 
-# install hypertable.cfg
-template "#{node[:hypertable][:path]}/conf/hypertable.cfg" do
+hypertable_config "#{node[:hypertable][:path]}/conf/hypertable.cfg" do
   owner "root"
   group "root"
   mode "0644"
-  variables ({
-    :hypertable_hyperspaces => hypertable_hyperspaces
-  })
 end
 
 # install backup and restore tools

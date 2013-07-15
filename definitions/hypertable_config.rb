@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hypertable
-# Recipe:: admin
+# Definition:: hypertable_config
 #
 # Copyright 2013, Jordi Llonch
 #
@@ -17,27 +17,23 @@
 # limitations under the License.
 #
 
-#
-# Install capistrano and capistrano-chef
-#
-%w(capistrano capistrano-chef).each do |name|
-  gem_package name
-end
 
-directory "#{node[:hypertable][:path_admin]}" do
-  owner "root"
-  group "root"
-  mode "0755"
-end
+define :hypertable_config do
 
-template "#{node[:hypertable][:path_admin]}/Capfile" do
-  owner "root"
-  group "root"
-  mode "0644"
-end
+  if Chef::Config[:solo]
+    hypertable_hyperspaces = []
+  else
+    hypertable_hyperspaces = search(:node, "role:#{node[:hypertable][:role][:hypertable_hyperspace]}")
+  end
 
-hypertable_config "#{node[:hypertable][:path_admin]}/hypertable.cfg" do
-  owner "root"
-  group "root"
-  mode "0644"
+  # install hypertable.cfg
+  template params[:name] do
+    owner params[:owner]
+    group params[:group]
+    mode params[:mode]
+    variables ({
+      :hypertable_hyperspaces => hypertable_hyperspaces
+    })
+  end
+
 end
