@@ -11,10 +11,10 @@ set :default_config, "<%= node[:hypertable][:path_base] %>/hypertable.cfg"
 role :source, '<%= node[:hostname] %>'
 role :localhost, '<%= node[:hostname] %>'
 
-chef_role :master, 'roles:hypertable_master', :attribute => :fqdn
-chef_role :hyperspace, 'roles:hypertable_hyperspace', :attribute => :fqdn
-chef_role :slave, 'roles:hypertable_slave', :attribute => :fqdn
-chef_role :thriftbroker_additional, 'roles:hypertable_thriftbroker_additional', :attribute => :fqdn
+chef_role :master, 'roles:<%= node[:hypertable][:role][:hypertable_master]%>', :attribute => "<%= node[:hypertable][:node_attribute]%>"
+chef_role :hyperspace, 'roles:<%= node[:hypertable][:role][:hypertable_hyperspace]%>', :attribute => "<%= node[:hypertable][:node_attribute]%>"
+chef_role :slave, 'roles:<%= node[:hypertable][:role][:hypertable_slave]%>', :attribute => "<%= node[:hypertable][:node_attribute]%>"
+chef_role :thriftbroker_additional, 'roles:<%= node[:hypertable][:role][:hypertable_thriftbroker_additional]%>', :attribute => "<%= node[:hypertable][:node_attribute]%>"
 
 ######################### END OF USER CONFIGURATION ############################
 set :prompt_stop, 0
