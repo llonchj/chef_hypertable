@@ -1,0 +1,61 @@
+#
+# hypertable.cfg
+#
+
+Hypertable.Network.Interface=eth1
+
+HdfsBroker.fs.default.name=hdfs://node1.nitidum.devel:9000
+
+## Hypertable.RangeServer.Range.RowSize.Unlimited=true
+## Hyperspace.Client.Datagram.SendPort=38049
+
+# HDFS Broker
+HdfsBroker.Hadoop.ConfDir=/etc/hadoop/conf
+
+# Ceph Broker
+CephBroker.MonAddr=10.0.1.245:6789
+
+# Local Broker
+DfsBroker.Local.Root=fs/local
+
+# DFS Broker - for clients
+DfsBroker.Port=38030
+
+# Hyperspace
+
+<% if @hypertable_hyperspaces.empty? %>
+Hyperspace.Replica.Host=<% node[:fqdn] %>
+<% else %>
+<% @hypertable_hyperspaces.each do |hyperspace| %>
+Hyperspace.Replica.Host=<%= hyperspace[:fqdn] %>
+<% end %>
+<% end %>
+
+Hyperspace.Replica.Port=38040
+Hyperspace.Replica.Dir=hyperspace
+
+# Hypertable.Master
+Hypertable.Master.Port=38050
+
+# Hypertable.RangeServer
+Hypertable.RangeServer.Port=38060
+
+Hyperspace.KeepAlive.Interval=30000
+Hyperspace.Lease.Interval=1000000
+Hyperspace.GracePeriod=200000
+
+# ThriftBroker
+ThriftBroker.Port=38080
+
+## 
+## HdfsBroker.fs.default.name=hdfs://node1.nitidum.com:9000
+## 
+## Hypertable.Network.Interface=eth1
+## Hypertable.RangeServer.Range.RowSize.Unlimited=true
+## 
+## Hyperspace.Replica.Host=node1.nitidum.com
+## Hyperspace.Replica.Host=node2.nitidum.com
+## 
+## Hyperspace.Client.Datagram.SendPort=38049
+## 
+
