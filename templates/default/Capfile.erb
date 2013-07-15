@@ -6,7 +6,7 @@ set :hypertable_version, "<%= node[:hypertable][:version] %>"
 set :default_pkg, "<%= node[:hypertable][:package_cache] %>"
 set :default_dfs, "<%= node[:hypertable][:dfs] %>"
 set :default_distro, "<%= node[:hypertable][:distro] %>"
-set :default_config, "<%= node[:hypertable][:path_base] %>/hypertable.cfg"
+set :default_config, "<%= node[:hypertable][:path_admin] %>/hypertable.cfg"
 
 role :source, '<%= node[:hostname] %>'
 role :localhost, '<%= node[:hostname] %>'
