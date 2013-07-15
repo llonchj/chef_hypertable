@@ -13,8 +13,11 @@ default[:hypertable][:package_cache] = "#{node[:hypertable][:package_dir]}/#{nod
 default[:hypertable][:path_base] = "/opt/hypertable"
 default[:hypertable][:path] = "#{node[:hypertable][:path_base]}/current"
 
-default[:hypertable][:dfs] = "hadoop"
-default[:hypertable][:distro] = "cdh4"
+default[:hypertable][:dfs] = "local"
+default[:hypertable][:distro] = ""
+
+#default[:hypertable][:dfs] = "hadoop"
+#default[:hypertable][:distro] = "cdh4"
 
 
 # default[:hypertable][:url] = "http://cdn.hypertable.com/packages/#{node[:hypertable][:version]}/hypertable-default[:hypertable][:version]-linux-x86_64.rpm"
