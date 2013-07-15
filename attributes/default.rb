@@ -10,8 +10,8 @@ default[:hypertable][:user] = "root"
 default[:hypertable][:package_dir] = "/var/chef/downloads"
 default[:hypertable][:package_cache] = "#{node[:hypertable][:package_dir]}/#{node[:hypertable][:package_file]}"
 
-default[:hypertable][:path_admin] = "/root/hypertable"
 default[:hypertable][:path_base] = "/opt/hypertable"
+default[:hypertable][:path_admin] = node[:hypertable][:path_base]
 default[:hypertable][:path] = "#{node[:hypertable][:path_base]}/current"
 
 default[:hypertable][:dfs] = "local"
@@ -31,6 +31,7 @@ default[:hypertable][:node_attribute] = :fqdn
 #default[:hypertable][:dfs] = "hadoop"
 #default[:hypertable][:distro] = "cdh4"
 
+default[:hypertable][:filehandle_limit] = 65536
 
 # default[:hypertable][:url] = "http://cdn.hypertable.com/packages/#{node[:hypertable][:version]}/hypertable-default[:hypertable][:version]-linux-x86_64.rpm"
 # 
