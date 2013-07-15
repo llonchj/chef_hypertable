@@ -36,21 +36,15 @@ dpkg_package "hypertable" do
   not_if "dpkg -s hypertable"
 end
 
+execute "fhsize hypertable" do
+  command "/bin/bash #{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}/bin/fhsize.sh"
+  cwd node[:hypertable][:path]
+  not_if { ::Dir.exists?("#{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}/run") }
+end
+
 # link version to current
 link node[:hypertable][:path] do
   to "#{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}"
-end
-
-execute "fhsize hypertable" do
-  command "/bin/bash #{node[:hypertable][:path]}/bin/fhsize.sh"
-  cwd node[:hypertable][:path]
-  not_if { ::Dir.exists?("#{node[:hypertable][:path]}/run") }
-end
-
-if Chef::Config[:solo]
-  hypertable_hyperspaces = []
-else
-  hypertable_hyperspaces = search(:node, "role:hypertable_hyperspace")
 end
 
 # install notification hook
@@ -60,14 +54,20 @@ template "#{node[:hypertable][:path]}/conf/notification-hook.sh" do
   mode "0755"
 end
 
-# install hypertable.cfg
-template "#{node[:hypertable][:path]}/conf/hypertable.cfg" do
+hypertable_config "#{node[:hypertable][:path]}/conf/hypertable.cfg" do
   owner "root"
   group "root"
   mode "0644"
-  variables ({
-    :hypertable_hyperspaces => hypertable_hyperspaces
-  })
+end
+
+# install backup and restore tools
+%w(backup.sh restore.sh).each do |f|
+  cookbook_file "#{node[:hypertable][:path]}/bin/#{f}" do
+    source f
+    owner "root"
+    group "root"
+    mode "0755"
+  end
 end
 
 user_ulimit node[:hypertable][:user] do
