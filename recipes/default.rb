@@ -71,7 +71,7 @@ end
 end
 
 user_ulimit node[:hypertable][:user] do
-  filehandle_limit 65536 # optional
+  filehandle_limit node[:hypertable][:filehandle_limit] # optional
 end
 
 iptables_rule "port_hypertable"

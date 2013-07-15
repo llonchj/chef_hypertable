@@ -31,6 +31,7 @@ default[:hypertable][:node_attribute] = :fqdn
 #default[:hypertable][:dfs] = "hadoop"
 #default[:hypertable][:distro] = "cdh4"
 
+default[:hypertable][:filehandle_limit] = 65536
 
 # default[:hypertable][:url] = "http://cdn.hypertable.com/packages/#{node[:hypertable][:version]}/hypertable-default[:hypertable][:version]-linux-x86_64.rpm"
 # 
