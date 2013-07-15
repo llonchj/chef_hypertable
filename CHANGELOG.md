@@ -1,6 +1,11 @@
 # CHANGELOG for hypertable
 
-This file is used to list changes made in each version of hsqldb.
+This file is used to list changes made in each version of hypertable.
+
+## 0.1.1:
+
+* Capistrano integration
+* Recipes
 
 ## 0.1.0:
 

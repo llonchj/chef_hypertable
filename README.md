@@ -1,16 +1,21 @@
 Hypertable Cookbook
-====================
+===================
 
-Cookbook for the Hypertable Storage.
+> Note: This is a beta cookbook not indented to be used in production.
 
+[Opscode Chef](http://opscode.com/chef) cookbook for [Hypertable](http://www.hypertable.org/).
+
+This cookbook helps build a hypertable cluster.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
-#### packages
+* SSH root access between nodes for Capistrano operations.
 
+TODO
+----
+
+* Fine tune iptables rules
 
 License and Authors
 -------------------
