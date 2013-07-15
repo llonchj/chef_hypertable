@@ -42,7 +42,9 @@ Requirements
 TODO
 ----
 
-* Fine tune iptables rules
+* Fine tune iptables rules.
+* More DRY.
+* Support other OSes: Fedora, Redhat, CentOS, Debian, OSX.
 
 Contribute
 ----------
