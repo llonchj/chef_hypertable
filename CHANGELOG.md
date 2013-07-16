@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of hypertable.
 
+## 0.1.4:
+
+* Bugfixes
+
 ## 0.1.3:
 
 * Includes role recipe
