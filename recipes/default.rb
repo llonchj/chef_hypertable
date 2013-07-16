@@ -38,7 +38,7 @@ end
 
 execute "fhsize hypertable" do
   command "/bin/bash #{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}/bin/fhsize.sh"
-  cwd node[:hypertable][:path]
+  cwd "#{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}"
   not_if { ::Dir.exists?("#{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}/run") }
 end
 
