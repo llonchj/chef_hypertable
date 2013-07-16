@@ -23,7 +23,7 @@ define :hypertable_config do
   if Chef::Config[:solo]
     hyperspace_servers = []
   else
-    hyperspace_servers = search(:node, "role:#{node[:hypertable][:role][:hypertable_hyperspace]}")
+    hyperspace_servers = search(:node, "roles:#{node[:hypertable][:role][:hypertable_hyperspace]}")
     hyperspace_servers = hyperspace_servers.sort_by { |node| node[:fqdn] }
   end
 
