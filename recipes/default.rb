@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "iptables"
+
 directory node[:hypertable][:package_dir] do
   owner 'root'
   group 'root'
