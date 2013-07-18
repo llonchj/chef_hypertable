@@ -91,6 +91,6 @@ if node.role?(node[:hypertable][:role][:hypertable_slave])
 end
 
 if node.role?(node[:hypertable][:role][:hypertable_thriftbroker_additional]) 
-  include_recipe "hypertable::thriftbroker_additional"
+  include_recipe "hypertable::thriftbroker"
 end
 
