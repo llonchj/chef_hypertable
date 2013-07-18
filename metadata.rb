@@ -10,6 +10,6 @@ version          '0.1.5'
   supports sup
 end
 
-%w(iptables ulimit).each do |name|
+%w(build-essential iptables ulimit).each do |name|
   depends name
 end
