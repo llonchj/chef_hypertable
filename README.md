@@ -1,25 +1,11 @@
 Hypertable Cookbook
 ===================
 
->  __This is a beta cookbook not indented to be used in production.__
+>  __This is a beta cookbook, all names and recipes might change in the future.__
 
 [Opscode Chef](http://opscode.com/chef) cookbook for [Hypertable](http://www.hypertable.org/).
 
 This cookbook helps build a hypertable cluster.
-
-Installation
-------------
-
-1. Create roles:
-
- * hypertable\_hyperspace
- * hypertable\_master
- * hypertable\_slave
- * hypertable\_thriftbroker\_additional
-
-3. Assign the roles to the nodes.
-4. Set an admin node using `hypertable::admin` recipe.
-5. Add `hypertable` recipe to the nodes run list.
 
 Recipes
 -------

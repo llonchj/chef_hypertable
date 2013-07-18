@@ -2,6 +2,14 @@
 
 This file is used to list changes made in each version of hypertable.
 
+## 0.1.5:
+
+* dfs initialization, required for hadoop
+* finegrained iptables config
+* Role deprecation, will be removed in 0.2.0
+* Renamed thriftbroker\_additional to thriftbroker
+* Initial cluster support
+
 ## 0.1.4:
 
 * Bugfixes

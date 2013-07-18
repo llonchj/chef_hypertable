@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hypertable
-# Definition:: hypertable_config
+# Recipe:: dfs_hadoop
 #
 # Copyright 2013, Jordi Llonch
 #
@@ -18,25 +18,10 @@
 #
 
 
-define :hypertable_config do
+execute "create hypertable dfs folder" do
+  command "sudo -u hdfs hadoop fs -mkdir -p /hypertable"
+end
 
-  cluster_name = params[:cluster_name] or node[:hypertable][:cluster_name]
-
-  if Chef::Config[:solo]
-    hyperspace_servers = []
-  else
-    hyperspace_servers = search(:node, 'recipes:hypertable\:\:hyperspace') #' AND hypertable_cluster_name:' + cluster_name)
-    hyperspace_servers = hyperspace_servers.sort_by { |node| node[:fqdn] }
-  end
-
-  # install hypertable.cfg
-  template params[:name] do
-    owner params[:owner]
-    group params[:group]
-    mode params[:mode]
-    variables ({
-      :hyperspace_servers => hyperspace_servers
-    })
-  end
-
+execute "set hypertable dfs folder permissions" do
+  command "sudo -u hdfs hadoop fs -chmod 777 /hypertable"
 end
