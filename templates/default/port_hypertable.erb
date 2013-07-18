@@ -2,13 +2,46 @@
 # Hypertable firewall rules
 # http://hypertable.com/documentation/misc/firewall_requirements
 #
--A FWR -p tcp --dport 38090 -j ACCEPT
--A FWR -p tcp --dport 38080 -j ACCEPT
--A FWR -p tcp --dport 38060 -j ACCEPT
--A FWR -p tcp --dport 38050 -j ACCEPT
--A FWR -p tcp --dport 38041 -j ACCEPT
--A FWR -p tcp --dport 38040 -j ACCEPT
--A FWR -p tcp --dport 38030 -j ACCEPT
--A FWR -p udp --dport 38049 -j ACCEPT
--A FWR -p udp -j ACCEPT
+
+# DFS Broker
+<%  @hypertable_nodes.each do |n| -%>
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38030 -j ACCEPT
+<%  end -%>
+
+# Hyperspace
+<%  @hypertable_nodes.each do |n| -%>
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %>  --dport 38040 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %>  --dport 38041 -j ACCEPT
+-A FWR -p udp -m udp -s <%= n[:fqdn] %>  --dport 38041 -j ACCEPT
+<%  end -%>
+
+# Master
+<%  @hypertable_nodes.each do |n| -%>
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38050 -j ACCEPT
+<%  end -%>
+
+# Range Server
+<%  @hypertable_nodes.each do |n| -%>
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38060 -j ACCEPT
+<%  end -%>
+
+# Thrift Broker
+<%  @hypertable_nodes.each do |n| -%>
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38080 -j ACCEPT
+<%  end -%>
+
+
+# UDP Traffic
+#-A FWR -p udp --dport 38049 -j ACCEPT
+<%  @hypertable_nodes.each do |n| -%>
+-A FWR -p udp -s <%= n[:fqdn] %> -j ACCEPT
+<%  end -%>
+
+
+# TODO! decide about those ports
+#
+# Monitoring UI
+<%  @master_nodes.each do |n| -%>
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38090 -j ACCEPT
+<%  end -%>
 
