@@ -76,7 +76,15 @@ user_ulimit node[:hypertable][:user] do
   filehandle_limit node[:hypertable][:filehandle_limit] # optional
 end
 
-iptables_rule "port_hypertable"
+hypertable_nodes = search(:node, 'recipes:hypertable\:\:hyperspace').sort_by { |node| node[:fqdn] }
+master_nodes = search(:node, 'recipes:hypertable\:\:master').sort_by { |node| node[:fqdn] }
+
+iptables_rule "port_hypertable" do
+  variables ({
+    :hypertable_nodes => hypertable_nodes,
+    :master_nodes => master_nodes
+  })
+end
 
 if node.role?(node[:hypertable][:role][:hypertable_hyperspace]) 
   include_recipe "hypertable::hyperspace"
