@@ -1,4 +1,6 @@
 
+default[:hypertable][:cluster_name] = "hypertable"
+
 default[:hypertable][:version] = "0.9.7.8"
 default[:hypertable][:package_file] = "hypertable-#{node[:hypertable][:version]}-linux-x86_64.deb"
 

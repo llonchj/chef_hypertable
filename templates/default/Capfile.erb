@@ -13,10 +13,10 @@ set :default_config, "<%= node[:hypertable][:path_admin] %>/hypertable.cfg"
 role :source, '<%= node[:hostname] %>'
 role :localhost, '<%= node[:hostname] %>'
 
-chef_role :master, 'recipes:hypertable\:\:master', :attribute => "<%= node[:hypertable][:node_attribute]%>"
-chef_role :hyperspace, 'recipes:hypertable\:\:hyperspace', :attribute => "<%= node[:hypertable][:node_attribute]%>"
-chef_role :slave, 'recipes:hypertable\:\:slave', :attribute => "<%= node[:hypertable][:node_attribute]%>"
-chef_role :thriftbroker_additional, 'recipes:hypertable\:\:thriftbroker', :attribute => "<%= node[:hypertable][:node_attribute]%>"
+chef_role :master, 'recipes:hypertable\:\:master AND hypertable.cluster.name=<%= node[:hypertable][:cluster_name] %>', :attribute => "<%= node[:hypertable][:node_attribute]%>"
+chef_role :hyperspace, 'recipes:hypertable\:\:hyperspace AND hypertable.cluster.name=<%= node[:hypertable][:cluster_name] %>', :attribute => "<%= node[:hypertable][:node_attribute]%>"
+chef_role :slave, 'recipes:hypertable\:\:slave AND hypertable.cluster.name=<%= node[:hypertable][:cluster_name] %>', :attribute => "<%= node[:hypertable][:node_attribute]%>"
+chef_role :thriftbroker_additional, 'recipes:hypertable\:\:thriftbroker AND hypertable.cluster.name=<%= node[:hypertable][:cluster_name] %>', :attribute => "<%= node[:hypertable][:node_attribute]%>"
 
 ######################### END OF USER CONFIGURATION ############################
 set :prompt_stop, 0
