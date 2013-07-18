@@ -2,13 +2,29 @@
 # Hypertable firewall rules
 # http://hypertable.com/documentation/misc/firewall_requirements
 #
--A FWR -p tcp --dport 38090 -j ACCEPT
--A FWR -p tcp --dport 38080 -j ACCEPT
--A FWR -p tcp --dport 38060 -j ACCEPT
--A FWR -p tcp --dport 38050 -j ACCEPT
--A FWR -p tcp --dport 38041 -j ACCEPT
--A FWR -p tcp --dport 38040 -j ACCEPT
+
+# DFS Broker
 -A FWR -p tcp --dport 38030 -j ACCEPT
+
+# Hyperspace
+-A FWR -p tcp --dport 38040 -j ACCEPT
+-A FWR -p udp --dport 38040 -j ACCEPT
+-A FWR -p tcp --dport 38041 -j ACCEPT
+
+# Master
+-A FWR -p tcp --dport 38050 -j ACCEPT
+
+# Range Server
+-A FWR -p tcp --dport 38060 -j ACCEPT
+
+# Thrift Broker
+-A FWR -p tcp --dport 38080 -j ACCEPT
+
+# Monitoring UI
+-A FWR -p tcp --dport 38090 -j ACCEPT
+
+# UDP Traffic
 -A FWR -p udp --dport 38049 -j ACCEPT
--A FWR -p udp -j ACCEPT
+
+#-A FWR -p udp -j ACCEPT
 
