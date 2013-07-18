@@ -8,7 +8,7 @@
 Hypertable.Network.Interface=<%= node[:hypertable][:network_interface] %>
 <% end %>
 
-HdfsBroker.fs.default.name=hdfs://node1.nitidum.devel:9000
+HdfsBroker.fs.default.name=<%= node[:hypertable][:fs_default_name] %>
 
 ## Hypertable.RangeServer.Range.RowSize.Unlimited=true
 ## Hyperspace.Client.Datagram.SendPort=38049

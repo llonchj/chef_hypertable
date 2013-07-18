@@ -21,6 +21,7 @@ default[:hypertable][:distro] = ""
 
 #
 default[:hypertable][:network_interface] = nil
+default[:hypertable][:fs_default_name] = "hdfs://localhost:9000"
 
 #
 # Applicable roles for the nodes
