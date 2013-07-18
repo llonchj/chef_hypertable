@@ -25,7 +25,7 @@ define :hypertable_config do
   if Chef::Config[:solo]
     hyperspace_servers = []
   else
-    hyperspace_servers = search(:node, 'recipes:hypertable\:\:hyperspace') #' AND hypertable_cluster_name=#{cluster_name}')
+    hyperspace_servers = search(:node, 'recipes:hypertable\:\:hyperspace') #' AND hypertable_cluster_name:' + cluster_name)
     hyperspace_servers = hyperspace_servers.sort_by { |node| node[:fqdn] }
   end
 
