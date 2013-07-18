@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-file "#{node[:hypertable][:path]}/hadoop-distro" do
+file "#{node[:hypertable][:path_version]}/conf/hadoop-distro" do
   content "#{node[:hypertable][:distro]}\n"
   owner "root"
   group "root"
