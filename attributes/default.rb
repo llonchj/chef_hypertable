@@ -20,6 +20,7 @@ default[:hypertable][:path] = "#{node[:hypertable][:path_base]}/current"
 
 default[:hypertable][:dfs] = "local"
 default[:hypertable][:distro] = ""
+default[:hypertable][:log_level] = "info"
 
 #
 default[:hypertable][:network_interface] = nil
