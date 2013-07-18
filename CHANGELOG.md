@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of hypertable.
 
+## 0.1.6:
+
+* Bugfixes
+
 ## 0.1.5:
 
 * dfs initialization, required for hadoop

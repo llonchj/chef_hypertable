@@ -17,11 +17,22 @@
 # limitations under the License.
 #
 
-
-execute "create hypertable dfs folder" do
-  command "sudo -u hdfs hadoop fs -mkdir -p /hypertable"
+file "#{node[:hypertable][:path_version]}/conf/hadoop-distro" do
+  content "#{node[:hypertable][:distro]}\n"
+  owner "root"
+  group "root"
+  mode '0600'
 end
+
 
 execute "set hypertable dfs folder permissions" do
   command "sudo -u hdfs hadoop fs -chmod 777 /hypertable"
+  action :nothing
 end
+
+execute "create hypertable dfs folder" do
+  command "sudo -u hdfs hadoop fs -mkdir -p /hypertable"
+  not_if "sudo -u hdfs hadoop fs -test -d /hypertable"
+  notifies :run, resources("execute[set hypertable dfs folder permissions]"), :immediately
+end
+

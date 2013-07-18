@@ -24,13 +24,14 @@
   gem_package name
 end
 
-directory "#{node[:hypertable][:path_admin]}" do
+directory node[:hypertable][:etc_path] do
   owner "root"
   group "root"
   mode "0755"
+  recursive true
 end
 
-template "#{node[:hypertable][:path_admin]}/Capfile" do
+template "#{node[:hypertable][:etc_path]}/Capfile.#{node[:hypertable][:cluster_name]}" do
   owner "root"
   group "root"
   mode "0644"

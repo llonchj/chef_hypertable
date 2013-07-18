@@ -10,14 +10,19 @@ This cookbook helps build a hypertable cluster.
 Recipes
 -------
 
-`hypertable` Provisions hypertable and executes the recipes defined by role in the node. (i.e a node with 'hypertable\_master' includes 'hypertable::master')
+`hypertable` Installs Hypertable
 
 `hypertable::admin` Installs Capistrano
 
-`hypertable::master` Includes hypertable::monitoring
+`hypertable::master` Enables node as Master replica and includes hypertable::monitoring
 
 `hypertable::monitoring` Installs required modules for monitoring
 
+`hypertable::hyperspace` Enables node as Hyperspace replica
+
+`hypertable::slave` Enables node as RangeServer
+
+`hypertable::thriftbroker` Enables node as ThriftBroker
 
 Requirements
 ------------
@@ -27,9 +32,10 @@ Requirements
 TODO
 ----
 
-* Fine tune iptables rules.
-* More DRY.
 * Support other OSes: Fedora, Redhat, CentOS, Debian, OSX.
+* Support all Hypertable supported DFS's.
+* Hypertable configuration options.
+* Test cases.
 
 Contribute
 ----------
