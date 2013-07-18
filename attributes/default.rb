@@ -15,6 +15,7 @@ default[:hypertable][:package_cache] = "#{node[:hypertable][:package_dir]}/#{nod
 default[:hypertable][:etc_path] = "/etc/opt/hypertable"
 default[:hypertable][:path_base] = "/opt/hypertable"
 default[:hypertable][:path_admin] = node[:hypertable][:path_base]
+default[:hypertable][:path_version] = "#{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}"
 default[:hypertable][:path] = "#{node[:hypertable][:path_base]}/current"
 
 default[:hypertable][:dfs] = "local"
