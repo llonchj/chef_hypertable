@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+include_recipe "build-essential"
 
 %w(rrdtool graphviz).each do |name|
   package name

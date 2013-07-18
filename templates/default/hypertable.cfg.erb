@@ -4,9 +4,11 @@
 # hypertable.cfg
 #
 
-Hypertable.Network.Interface=eth1
+<% if node[:hypertable][:network_interface] %>
+Hypertable.Network.Interface=<%= node[:hypertable][:network_interface] %>
+<% end %>
 
-HdfsBroker.fs.default.name=hdfs://node1.nitidum.devel:9000
+HdfsBroker.fs.default.name=<%= node[:hypertable][:fs_default_name] %>
 
 ## Hypertable.RangeServer.Range.RowSize.Unlimited=true
 ## Hyperspace.Client.Datagram.SendPort=38049
@@ -48,16 +50,3 @@ Hyperspace.GracePeriod=200000
 
 # ThriftBroker
 ThriftBroker.Port=38080
-
-## 
-## HdfsBroker.fs.default.name=hdfs://node1.nitidum.com:9000
-## 
-## Hypertable.Network.Interface=eth1
-## Hypertable.RangeServer.Range.RowSize.Unlimited=true
-## 
-## Hyperspace.Replica.Host=node1.nitidum.com
-## Hyperspace.Replica.Host=node2.nitidum.com
-## 
-## Hyperspace.Client.Datagram.SendPort=38049
-## 
-

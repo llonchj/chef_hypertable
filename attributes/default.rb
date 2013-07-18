@@ -12,12 +12,18 @@ default[:hypertable][:user] = "root"
 default[:hypertable][:package_dir] = "/var/chef/downloads"
 default[:hypertable][:package_cache] = "#{node[:hypertable][:package_dir]}/#{node[:hypertable][:package_file]}"
 
+default[:hypertable][:etc_path] = "/etc/opt/hypertable"
 default[:hypertable][:path_base] = "/opt/hypertable"
 default[:hypertable][:path_admin] = node[:hypertable][:path_base]
+default[:hypertable][:path_version] = "#{node[:hypertable][:path_base]}/#{node[:hypertable][:version]}"
 default[:hypertable][:path] = "#{node[:hypertable][:path_base]}/current"
 
 default[:hypertable][:dfs] = "local"
 default[:hypertable][:distro] = ""
+
+#
+default[:hypertable][:network_interface] = nil
+default[:hypertable][:fs_default_name] = "hdfs://localhost:9000"
 
 #
 # Applicable roles for the nodes
