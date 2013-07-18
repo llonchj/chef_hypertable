@@ -20,6 +20,9 @@ default[:hypertable][:dfs] = "local"
 default[:hypertable][:distro] = ""
 
 #
+default[:hypertable][:network_interface] = nil
+
+#
 # Applicable roles for the nodes
 #
 default[:hypertable][:role][:hypertable_master] = "hypertable_master"

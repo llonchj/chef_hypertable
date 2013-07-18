@@ -4,7 +4,9 @@
 # hypertable.cfg
 #
 
-Hypertable.Network.Interface=eth1
+<% if node[:hypertable][:network_interface] %>
+Hypertable.Network.Interface=<%= node[:hypertable][:network_interface] %>
+<% end %>
 
 HdfsBroker.fs.default.name=hdfs://node1.nitidum.devel:9000
 
