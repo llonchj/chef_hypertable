@@ -17,6 +17,14 @@
 # limitations under the License.
 #
 
+file "#{node[:hypertable][:path]}/hadoop-distro" do
+  content "#{node[:hypertable][:distro]}\n"
+  owner "root"
+  group "root"
+  mode '0600'
+end
+
+
 execute "set hypertable dfs folder permissions" do
   command "sudo -u hdfs hadoop fs -chmod 777 /hypertable"
   action :nothing
