@@ -32,6 +32,7 @@ directory node[:hypertable][:etc_path] do
 end
 
 template "#{node[:hypertable][:etc_path]}/Capfile.#{node[:hypertable][:cluster_name]}" do
+  source "Capfile.erb"
   owner "root"
   group "root"
   mode "0644"
