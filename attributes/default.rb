@@ -24,6 +24,21 @@ default[:hypertable][:distro] = ""
 #
 # Hypertable Configuration Settings
 #
+default[:hypertable][:conf]["HdfsBroker.Hadoop.ConfDir"] = "/etc/hadoop/conf"
+default[:hypertable][:conf]["CephBroker.MonAddr"] = "10.0.1.245:6789"
+default[:hypertable][:conf]["DfsBroker.Local.Root"] = "fs/local"
+default[:hypertable][:conf]["DfsBroker.Port"] = 38030
+default[:hypertable][:conf]["Hyperspace.Replica.Port"] = 38040
+default[:hypertable][:conf]["Hyperspace.Replica.Dir"] = "hyperspace"
+default[:hypertable][:conf]["Hypertable.Master.Port"] = "38050"
+default[:hypertable][:conf]["Hypertable.RangeServer.Port"] = 38060
+default[:hypertable][:conf]["ThriftBroker.Port"] = 38080
+
+#default[:hypertable][:conf]["Hypertable.Logging.Level"] = "info"
+#default[:hypertable][:conf]["Hypertable.Network.Interface"] = nil
+## Hypertable.RangeServer.Range.RowSize.Unlimited=true
+## Hyperspace.Client.Datagram.SendPort=38049
+
 
 #
 # Applicable roles for the nodes

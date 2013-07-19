@@ -3,29 +3,12 @@
 #
 # hypertable.cfg
 #
+# More information:
+#       http://hypertable.com/documentation/reference_manual/configuration_properties
+#
+#
 
-<% if node[:hypertable][:network_interface] %>
-Hypertable.Network.Interface=<%= node[:hypertable][:network_interface] %>
-<% end %>
-
-HdfsBroker.fs.default.name=<%= node[:hypertable][:fs_default_name] %>
-
-## Hypertable.RangeServer.Range.RowSize.Unlimited=true
-## Hyperspace.Client.Datagram.SendPort=38049
-
-# HDFS Broker
-HdfsBroker.Hadoop.ConfDir=/etc/hadoop/conf
-
-# Ceph Broker
-CephBroker.MonAddr=10.0.1.245:6789
-
-# Local Broker
-DfsBroker.Local.Root=fs/local
-
-# DFS Broker - for clients
-DfsBroker.Port=38030
-
-# Hyperspace
+# Hyperspace Replicas
 
 <% if @hyperspace_servers.empty? %>
 Hyperspace.Replica.Host=<% node[:fqdn] %>
@@ -35,22 +18,49 @@ Hyperspace.Replica.Host=<%= node[:fqdn] %>
 <% end %>
 <% end %>
 
-Hyperspace.Replica.Port=38040
-Hyperspace.Replica.Dir=hyperspace
+# Other settings
 
-# Hypertable.Master
-Hypertable.Master.Port=38050
+<% @settings.keys.sort.each do |key| -%>
+<%  if @settings[key].kind_of? Array -%>
+<%    @settings[key].each do |item| -%>
+<%=   "#{key}=#{item}"%>
+<%    end -%>
 
-# Hypertable.RangeServer
-Hypertable.RangeServer.Port=38060
+<%  else -%>
+<%=   "#{key}=#{@settings[key]}"%>
 
-<% if node[:hypertable][:log_level] != "info" %>
-Hypertable.Logging.Level = <%= node[:hypertable][:log_level] %>
-<% end %>
+<%  end -%>
+<% end -%>
 
-Hyperspace.KeepAlive.Interval=30000
-Hyperspace.Lease.Interval=1000000
-Hyperspace.GracePeriod=200000
 
-# ThriftBroker
-ThriftBroker.Port=38080
+
+###############################################################################
+###
+### Hypertable optimization settings
+###
+## HdfsBroker.Reactors=20 # Number of HDFS broker communication reactor threads created
+## HdfsBroker.Workers=50 # Number of HDFS broker worker threads created
+## 
+## 
+## Hypertable.Master.Workers=200 # (100) Number of Hypertable Master worker threads created
+## Hypertable.Master.Reactors=100 # Number of Hypertable Master communication reactor threads created
+## 
+## Hypertable.RangeServer.MemoryLimit.Percentage=70 # (60) RangeServer memory limit specified as percentage of physical RAM
+## 
+## Hypertable.RangeServer.Range.SplitSize=268435456         # (=268435456) Size of range in bytes before splitting
+## Hypertable.RangeServer.QueryCache.MaxMemory=268435456   #(=50000000) Maximum size of query cache
+## Hypertable.RangeServer.BlockCache.MaxMemory=1073741824  # (=-1) Maximum (target) size of block cache
+## Hypertable.RangeServer.Data.DefaultReplication=3        # (=-1) Default replication for data
+## 
+## 
+## Hyperspace.KeepAlive.Interval=30000      # (=10000) Hyperspace Keepalive interval (see Chubby paper)
+## Hyperspace.Lease.Interval=1000000        # (=60000) Hyperspace Lease interval (see Chubby paper) 
+## Hyperspace.GracePeriod=200000            # (=60000) Hyperspace Grace period (see Chubby paper)
+## 
+## ThriftBroker.Workers=100                 # (=50) Number of worker threads for thrift broker
+## 
+## Hypertable.Metadata.Replication=3        # (=-1) Replication factor for commit log files
+## Hypertable.Logging.Level=warn            # (=info) Set system wide logging level (default: info)
+## 
+## Hypertable.Failover.Quorum.Percentage=100 # (=90) Percentage of live RangeServers required for failover to proceed
+## 

@@ -34,7 +34,6 @@ TODO
 
 * Support other OSes: Fedora, Redhat, CentOS, Debian, OSX.
 * Support all Hypertable supported DFS's.
-* Hypertable configuration options.
 * Test cases.
 
 Contribute
