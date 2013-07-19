@@ -38,6 +38,7 @@ default[:hypertable][:conf]["ThriftBroker.Port"] = 38080
 #default[:hypertable][:conf]["Hypertable.Network.Interface"] = nil
 ## Hypertable.RangeServer.Range.RowSize.Unlimited=true
 ## Hyperspace.Client.Datagram.SendPort=38049
+#default[:hypertable][:conf]["Hyperspace.Client.Datagram.SendPort"] = 38049
 
 
 #

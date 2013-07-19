@@ -32,9 +32,12 @@
 
 
 # UDP Traffic
-#-A FWR -p udp --dport 38049 -j ACCEPT
 <%  @hypertable_nodes.each do |n| -%>
+<% if node[:hypertable][:conf]["Hyperspace.Client.Datagram.SendPort"] -%>
+-A FWR -p udp --sport <%= node[:hypertable][:conf]["Hyperspace.Client.Datagram.SendPort"] %> -j ACCEPT
+<%  else -%>
 -A FWR -p udp -s <%= n[:fqdn] %> -j ACCEPT
+<%  end -%>
 <%  end -%>
 
 
