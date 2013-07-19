@@ -20,27 +20,37 @@ default[:hypertable][:path] = "#{node[:hypertable][:path_base]}/current"
 
 default[:hypertable][:dfs] = "local"
 default[:hypertable][:distro] = ""
-default[:hypertable][:log_level] = "info"
 
 #
-default[:hypertable][:network_interface] = nil
-default[:hypertable][:fs_default_name] = "hdfs://localhost:9000"
+# Hypertable Configuration Settings
+#
 
 #
 # Applicable roles for the nodes
+# (Deprecated, support will be removed in 0.2)
 #
 default[:hypertable][:role][:hypertable_master] = "hypertable_master"
 default[:hypertable][:role][:hypertable_slave] = "hypertable_slave"
 default[:hypertable][:role][:hypertable_hyperspace] = "hypertable_hyperspace"
 default[:hypertable][:role][:hypertable_thriftbroker_additional] = "hypertable_thriftbroker_additional"
 
+#
+# Capistrano Capfile configuration
+#
+
 # node attribute used in capistrano-chef (hostname, fqdn, ipaddress), default :fqdn
 default[:hypertable][:node_attribute] = :fqdn
 
-#default[:hypertable][:dfs] = "hadoop"
-#default[:hypertable][:distro] = "cdh4"
+#
+# File Open Limit
+#
 
 default[:hypertable][:filehandle_limit] = 65536
+
+
+##
+## Other platform support (Future)
+##
 
 # default[:hypertable][:url] = "http://cdn.hypertable.com/packages/#{node[:hypertable][:version]}/hypertable-default[:hypertable][:version]-linux-x86_64.rpm"
 # 
