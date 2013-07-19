@@ -5,29 +5,29 @@
 
 # DFS Broker
 <%  @hypertable_nodes.each do |n| -%>
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38030 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport <%= node[:hypertable][:conf]["DfsBroker.Port"] %> -j ACCEPT
 <%  end -%>
 
 # Hyperspace
 <%  @hypertable_nodes.each do |n| -%>
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %>  --dport 38040 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %>  --dport <%= node[:hypertable][:conf]["Hyperspace.Replica.Port"] %> -j ACCEPT
 -A FWR -p tcp -m tcp -s <%= n[:fqdn] %>  --dport 38041 -j ACCEPT
 -A FWR -p udp -m udp -s <%= n[:fqdn] %>  --dport 38041 -j ACCEPT
 <%  end -%>
 
 # Master
 <%  @hypertable_nodes.each do |n| -%>
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38050 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport <%= node[:hypertable][:conf]["Hypertable.Master.Port"] %> -j ACCEPT
 <%  end -%>
 
 # Range Server
 <%  @hypertable_nodes.each do |n| -%>
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38060 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport <%= node[:hypertable][:conf]["Hypertable.RangeServer.Port"] %> -j ACCEPT
 <%  end -%>
 
 # Thrift Broker
 <%  @hypertable_nodes.each do |n| -%>
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38080 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport <%= node[:hypertable][:conf]["ThriftBroker.Port"] %> -j ACCEPT
 <%  end -%>
 
 
