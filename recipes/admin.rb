@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "hypertable"
+
 #
 # Install capistrano and capistrano-chef
 #
@@ -31,7 +33,8 @@ directory node[:hypertable][:etc_path] do
   recursive true
 end
 
-template "#{node[:hypertable][:etc_path]}/Capfile.#{node[:hypertable][:cluster_name]}" do
+template "#{node[:hypertable][:etc_path]}/Capfile" do
+  source "Capfile.erb"
   owner "root"
   group "root"
   mode "0644"

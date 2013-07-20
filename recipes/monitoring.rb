@@ -17,13 +17,19 @@
 # limitations under the License.
 #
 
-include_recipe "build-essential"
+include_recipe "hypertable"
+#include_recipe "hypertable::master"
 
-%w(rrdtool graphviz).each do |name|
+
+node[:hypertable][:monitoring][:included_recipes].each do |name|
+  include_recipe name
+end
+
+node[:hypertable][:monitoring][:included_packages].each do |name|
   package name
 end
 
-%w(sinatra rack thin json titleize).each do |name|
+node[:hypertable][:monitoring][:included_gem_packages].each do |name|
   gem_package name
 end
 

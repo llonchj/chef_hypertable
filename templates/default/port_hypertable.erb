@@ -5,36 +5,39 @@
 
 # DFS Broker
 <%  @hypertable_nodes.each do |n| -%>
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38030 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport <%= node[:hypertable][:conf]["DfsBroker.Port"] or 38030 %> -j ACCEPT
 <%  end -%>
 
 # Hyperspace
 <%  @hypertable_nodes.each do |n| -%>
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %>  --dport 38040 -j ACCEPT
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %>  --dport 38041 -j ACCEPT
--A FWR -p udp -m udp -s <%= n[:fqdn] %>  --dport 38041 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %>  --dport <%= node[:hypertable][:conf]["Hyperspace.Replica.Port"] or 38040 %> -j ACCEPT
+-A FWR -p udp -m udp -s <%= n[:fqdn] %>  --dport <%= node[:hypertable][:conf]["Hyperspace.Replica.Port"] or 38040 %> -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %>  --dport <%= node[:hypertable][:conf]["Hyperspace.Replica.Replication.Port"] or 38041 %> -j ACCEPT
 <%  end -%>
 
 # Master
 <%  @hypertable_nodes.each do |n| -%>
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38050 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport <%= node[:hypertable][:conf]["Hypertable.Master.Port"] or 38050%> -j ACCEPT
 <%  end -%>
 
 # Range Server
 <%  @hypertable_nodes.each do |n| -%>
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38060 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport <%= node[:hypertable][:conf]["Hypertable.RangeServer.Port"] or 38060%> -j ACCEPT
 <%  end -%>
 
 # Thrift Broker
 <%  @hypertable_nodes.each do |n| -%>
--A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport 38080 -j ACCEPT
+-A FWR -p tcp -m tcp -s <%= n[:fqdn] %> --dport <%= node[:hypertable][:conf]["ThriftBroker.Port"] or 38090 %> -j ACCEPT
 <%  end -%>
 
 
 # UDP Traffic
-#-A FWR -p udp --dport 38049 -j ACCEPT
 <%  @hypertable_nodes.each do |n| -%>
+<% if node[:hypertable][:conf]["Hyperspace.Client.Datagram.SendPort"] -%>
+-A FWR -p udp --sport <%= node[:hypertable][:conf]["Hyperspace.Client.Datagram.SendPort"] %> -j ACCEPT
+<%  else -%>
 -A FWR -p udp -s <%= n[:fqdn] %> -j ACCEPT
+<%  end -%>
 <%  end -%>
 
 

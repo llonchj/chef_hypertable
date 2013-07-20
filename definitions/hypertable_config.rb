@@ -35,7 +35,8 @@ define :hypertable_config do
     group params[:group]
     mode params[:mode]
     variables ({
-      :hyperspace_servers => hyperspace_servers
+      :hyperspace_servers => hyperspace_servers,
+      :settings => node[:hypertable][:conf],
     })
   end
 
