@@ -39,6 +39,11 @@ default[:hypertable][:conf]["ThriftBroker.Port"] = 38080
 #default[:hypertable][:conf]["Hypertable.RangeServer.Range.RowSize.Unlimited"]=true
 #default[:hypertable][:conf]["Hyperspace.Client.Datagram.SendPort"] = 38049
 
+default[:hypertable][:monitoring][:included_recipes] = %w(build-essential hypertable)
+default[:hypertable][:monitoring][:included_packages] = %w(rrdtool graphviz)
+default[:hypertable][:monitoring][:included_gem_packages] = %w(sinatra rack thin json titleize)
+
+
 
 #
 # Applicable roles for the nodes
