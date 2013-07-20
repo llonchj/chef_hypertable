@@ -33,7 +33,7 @@ directory node[:hypertable][:etc_path] do
   recursive true
 end
 
-template "#{node[:hypertable][:etc_path]}/Capfile.#{node[:hypertable][:cluster_name]}" do
+template "#{node[:hypertable][:etc_path]}/Capfile" do
   source "Capfile.erb"
   owner "root"
   group "root"
