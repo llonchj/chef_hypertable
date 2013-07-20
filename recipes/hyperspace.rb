@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "hypertable"
+
 # provides db_hotbackup
 package "db4.8-util" 
 

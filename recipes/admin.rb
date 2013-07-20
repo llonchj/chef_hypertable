@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "hypertable"
+
 #
 # Install capistrano and capistrano-chef
 #

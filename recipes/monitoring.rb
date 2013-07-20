@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "hypertable"
+#include_recipe "hypertable::master"
 
 
 node[:hypertable][:monitoring][:included_recipes].each do |name|
