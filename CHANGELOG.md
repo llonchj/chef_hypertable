@@ -4,7 +4,12 @@ This file is used to list changes made in each version of hypertable.
 
 ## 0.1.7:
 
+* Better doumentation
 * Hypertable configuration settings in attributes
+* Iptables port configuration based on cookbook attributes
+* Fix Hypertable firewall port bug
+* Changed the way reciped include other recipes
+* DFS is only initialized on masters and slaves
 
 ## 0.1.6:
 
