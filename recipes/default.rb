@@ -102,10 +102,6 @@ if node.role?(node[:hypertable][:role][:hypertable_thriftbroker_additional])
   include_recipe "hypertable::thriftbroker"
 end
 
-#
-# initialize DFS
-#
-include_recipe "hypertable::dfs_#{node[:hypertable][:dfs]}"
 
 
 

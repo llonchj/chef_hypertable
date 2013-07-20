@@ -17,3 +17,8 @@
 # limitations under the License.
 #
 
+#
+# initialize DFS
+#
+include_recipe "hypertable::dfs_#{node[:hypertable][:dfs]}"
+

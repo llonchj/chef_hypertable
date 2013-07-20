@@ -17,5 +17,11 @@
 # limitations under the License.
 #
 
-
+include_recipe "hypertable"
 include_recipe "hypertable::monitoring"
+
+#
+# initialize DFS
+#
+include_recipe "hypertable::dfs_#{node[:hypertable][:dfs]}"
+
