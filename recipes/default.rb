@@ -90,19 +90,19 @@ iptables_rule "port_hypertable" do
   })
 end
 
-if node.role?(node[:hypertable][:role][:hypertable_hyperspace]) 
+if node.role?(node[:hypertable][:role][:hypertable_hyperspace])
   include_recipe "hypertable::hyperspace"
 end
 
-if node.role?(node[:hypertable][:role][:hypertable_master]) 
+if node.role?(node[:hypertable][:role][:hypertable_master])
   include_recipe "hypertable::master"
 end
 
-if node.role?(node[:hypertable][:role][:hypertable_slave]) 
+if node.role?(node[:hypertable][:role][:hypertable_slave])
   include_recipe "hypertable::slave"
 end
 
-if node.role?(node[:hypertable][:role][:hypertable_thriftbroker_additional]) 
+if node.role?(node[:hypertable][:role][:hypertable_thriftbroker_additional])
   include_recipe "hypertable::thriftbroker"
 end
 
