@@ -35,7 +35,7 @@ end
 
 dpkg_package "hypertable" do
   source node[:hypertable][:package_cache]
-  not_if "dpkg -s hypertable"
+  not_if { `dpkg -s hypertable | grep "^Version:" | awk '{print $NF}'` == node[:hypertable][:version] }
 end
 
 execute "fhsize hypertable" do
