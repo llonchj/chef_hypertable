@@ -76,8 +76,12 @@ user_ulimit node[:hypertable][:user] do
   filehandle_limit node[:hypertable][:filehandle_limit] # optional
 end
 
-hypertable_nodes = search(:node, 'recipes:hypertable\:\:hyperspace').sort_by { |node| node[:fqdn] }
-master_nodes = search(:node, 'recipes:hypertable\:\:master').sort_by { |node| node[:fqdn] }
+if Chef::Config[:solo]
+  Chef::Log.warn("This recipe uses search. Chef Solo does not support search.")
+else
+  hypertable_nodes = search(:node, 'recipes:hypertable\:\:hyperspace OR recipes:hypertable\:\:slave OR recipes:hypertable\:\:thriftbroker').sort_by { |node| node[:fqdn] }
+  master_nodes = search(:node, 'recipes:hypertable\:\:master').sort_by { |node| node[:fqdn] }
+end
 
 iptables_rule "port_hypertable" do
   variables ({
