@@ -21,8 +21,9 @@ Vagrant.configure("2") do |config|
       chef.json = {
         :set_fqdn => node.vm.hostname,
       }
-      chef.add_recipe "hypertable::test"
-      #chef.add_recipe "hypertable::admin"
+      chef.add_recipe "hypertable::admin"
+      chef.add_recipe "hypertable::master"
+      chef.add_recipe "hypertable::hyperspace"
       chef.log_level = :debug
     end
   end
@@ -41,8 +42,8 @@ Vagrant.configure("2") do |config|
         chef.json = {
           :set_fqdn => worker.vm.hostname,
         }
-        chef.add_recipe "hypertable::test"
-        #chef.add_recipe "hypertable"
+        chef.add_recipe "hypertable::hyperspace"
+        chef.add_recipe "hypertable::slave"
       end
 
     end
@@ -61,7 +62,7 @@ Vagrant.configure("2") do |config|
       chef.json = {
         :set_fqdn => worker.vm.hostname,
       }
-      chef.add_recipe "hypertable::test"
+      chef.add_recipe "hypertable::thriftbroker"
     end
 
   end

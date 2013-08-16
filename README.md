@@ -93,6 +93,9 @@ Due the multinode nature of the
 
 * Support other OSes: Fedora, Redhat, CentOS, Debian, OSX.
 * Support all Hypertable supported DFS's.
+* Run as user...
+* Upgrades with data compatibility, as `cap upgrade` does.
+* Finetune chef notifies and actions.
 * Test cases.
 
 # Contribute

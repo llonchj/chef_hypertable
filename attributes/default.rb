@@ -1,15 +1,14 @@
 
 default[:hypertable][:cluster_name] = "hypertable"
 
-default[:hypertable][:version] = "0.9.7.8"
+default[:hypertable][:version] = "0.9.7.9"
 default[:hypertable][:package_file] = "hypertable-#{node[:hypertable][:version]}-linux-x86_64.deb"
 
 default[:hypertable][:package_url] = "http://cdn.hypertable.com/packages/#{node[:hypertable][:version]}/#{node[:hypertable][:package_file]}"
 
 default[:hypertable][:user] = "root"
 
-# default[:hypertable][:package_dir] = Chef::Config[:file_cache_path]
-default[:hypertable][:package_dir] = "/var/chef/downloads"
+default[:hypertable][:package_dir] = Chef::Config[:file_cache_path]
 default[:hypertable][:package_cache] = "#{node[:hypertable][:package_dir]}/#{node[:hypertable][:package_file]}"
 
 default[:hypertable][:etc_path] = "/etc/opt/hypertable"
