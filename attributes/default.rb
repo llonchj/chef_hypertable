@@ -8,8 +8,7 @@ default[:hypertable][:package_url] = "http://cdn.hypertable.com/packages/#{node[
 
 default[:hypertable][:user] = "root"
 
-# default[:hypertable][:package_dir] = Chef::Config[:file_cache_path]
-default[:hypertable][:package_dir] = "/var/chef/downloads"
+default[:hypertable][:package_dir] = Chef::Config[:file_cache_path]
 default[:hypertable][:package_cache] = "#{node[:hypertable][:package_dir]}/#{node[:hypertable][:package_file]}"
 
 default[:hypertable][:etc_path] = "/etc/opt/hypertable"
