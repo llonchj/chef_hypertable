@@ -1,7 +1,7 @@
 
 default[:hypertable][:cluster_name] = "hypertable"
 
-default[:hypertable][:version] = "0.9.7.9"
+default[:hypertable][:version] = "0.9.7.10"
 default[:hypertable][:package_file] = "hypertable-#{node[:hypertable][:version]}-linux-x86_64.deb"
 
 default[:hypertable][:package_url] = "http://cdn.hypertable.com/packages/#{node[:hypertable][:version]}/#{node[:hypertable][:package_file]}"
@@ -23,6 +23,7 @@ default[:hypertable][:distro] = ""
 #
 # Hypertable Configuration Settings
 #
+#default[:hypertable][:conf]["Hypertable.Cluster.Name"] = ""
 default[:hypertable][:conf]["HdfsBroker.Hadoop.ConfDir"] = "/etc/hadoop/conf"
 default[:hypertable][:conf]["CephBroker.MonAddr"] = "10.0.1.245:6789"
 default[:hypertable][:conf]["DfsBroker.Local.Root"] = "fs/local"
