@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of hypertable.
 
+## 0.4.2:
+
+* Updated to Hypertable 0.9.7.17
+
 ## 0.4.1:
 
 * Updated to Hypertable 0.9.7.13
