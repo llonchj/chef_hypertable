@@ -1,7 +1,7 @@
 
 default[:hypertable][:cluster_name] = "hypertable"
 
-default[:hypertable][:version] = "0.9.7.13"
+default[:hypertable][:version] = "0.9.7.17"
 default[:hypertable][:package_file] = "hypertable-#{node[:hypertable][:version]}-linux-x86_64.deb"
 
 default[:hypertable][:package_url] = "http://cdn.hypertable.com/packages/#{node[:hypertable][:version]}/#{node[:hypertable][:package_file]}"
